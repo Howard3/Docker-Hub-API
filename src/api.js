@@ -20,17 +20,20 @@
     'use strict';
 
     //let _ = require('lodash');
-    let request = require('request');
-
-    let apiVersion = 2;
-
+    const request = require('request');
+    const apiVersion = 2;
     let cache = {};
     let cacheEnabled = true;
     let cacheTimeSeconds = 300;
-
     let loggedInToken = null;
 
     module.exports = {
+        request: {
+			/**
+             * expose request defaults to allow overriding network-specific requirements such as proxies.
+			 */
+			defaults: request.defaults
+        },
         /**
          * This logs into Docker Hub with the given username and password.
          *
